@@ -1,17 +1,19 @@
 {
-  "name": "runway-model-randcounter",
-  "version": "0.1.0",
-  "description": "Simple modification of the Counter model for use in Runway, essentially Hello World",
-  "keywords": [
-    "runway"
-  ],
-  "author": "Heidi Howard <hh360@cam.ac.uk>",
-  "license": "MIT",
-  "models": {
-    "main": {
-      "name": "Counter",
+    "name": "runway-model-randcounter",
+    "version": "0.1.0",
+    "description": "Simple modification of the Counter model for use in Runway, essentially Hello World",
+    "keywords": [
+        "runway"
+    ],
+    "author": "Heidi Howard <hh360@cam.ac.uk>",
+    "license": "MIT",
+    "models": [    {
+      "id": "Counter",
+      "label": "Counter",
       "spec": "counter.model",
-      "view": "counter.jsx"
-    }
+      "view": "counter.js"
+    } ],
+  "dependencies": {
+    "d3": "^3.5.17"
   }
 }
