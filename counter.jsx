@@ -8,41 +8,42 @@
 
 "use strict";
 
-let React = require('deprecated!react');
-let ReactDOM = require('deprecated!react-dom');
-
 let View = function(controller, svg, module) {
+  let model = module.env;
 
-let model = module.env;
+  svg = d3.select(svg)
+  .append('g');
 
-let CounterView = React.createClass({
-  render: function() {
-    let counters = [];
-    model.vars.get('counters').forEach((counterVar,i) => {
-      let output = ""
-      if (counterVar !== undefined) {
-        output = counterVar.toString();
-      }
-      let x1 = i*25
-      let x2 = x1 -10
-      counters.push(<circle cx={x1} cy={15} r="10"/>)
-      counters.push(<text x={x2} y={20} style={{fill: "#ffffff"}}>{output}</text>)
+  model.vars.get('counters').forEach((counterVar,i) => {
+    svg.append('circle')
+    .style('fill', '#aaaaaa')
+    .attr('r', 10)
+    .attr('cx',i*25)
+    .attr('cy',30);
+    svg.append('text')
+    .attr('class', 'serverId')
+    .attr('x',i*25)
+    .attr('y',30)
+    .style({
+      'text-anchor': 'middle',
+      'dominant-baseline': 'central',
+      'font-size': 12,
     })
-  return  <g>{counters}</g>;
+    .text(counterVar);
+  })
 
-  },
-});
-
-let reactComponent = ReactDOM.render(<CounterView />, svg);
-
-return {
-  update: function() {
-    // trigger a render
-    reactComponent.setState({}, () => {
-      console.log('rendered');
-    });
+  let draw = function() {
+    var txt = svg.selectAll('text')
+    txt.data(model.vars.get('counters'))
+    .enter().append('text')
+    .text(function(data,i){return data;});
   }
-};
+
+  return {
+    update: function() {
+      draw();
+      }
+  };
 
 }; // View
 
