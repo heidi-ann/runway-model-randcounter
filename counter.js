@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015-2016, Salesforce.com, Inc.
+ * Copyright (c) 2016, Heidi Howard <hh360@cam.ac.uk>
  * All rights reserved.
  * Licensed under the MIT license.
  * For full license text, see LICENSE.md file in the repo root or
